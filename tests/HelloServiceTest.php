@@ -10,7 +10,9 @@ class HelloServiceTest extends TestCase
     public function testHelloWithName()
     {
         $helloService = new HelloService();
-        $helloSarah = $helloService->sayHello('Sarah');
-        $this->assertSame('Hello Sarah!', $helloSarah);
+        $this->assertSame('Hello Sarah!', $helloService->sayHello('Sarah'));
+        $this->assertSame('Hello Georges!', $helloService->sayHello('Georges'));
+        $this->assertNotSame('Hello Georges!', $helloService->sayHello('Sarah'));
+        $this->assertNotSame('Hello John doe!', $helloService->sayHello('John', 'Doe'));
     }
 }

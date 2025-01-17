@@ -53,3 +53,8 @@ The architecture must be like that (complete it if necessary):
 
 3. Run the test: `./vendor/phpunit/phpunit/phpunit tests/HelloServiceTest.php`
 
+```
+Time: 00:00.007, Memory: 6.00 MB
+OK (1 test, 1 assertion)
+```
+
