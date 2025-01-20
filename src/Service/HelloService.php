@@ -6,23 +6,21 @@ class HelloService
 {
     public function sayHello(string $firstname, ?string $lastname = null): ?string
     {
-        if (!$lastname) {
-            $sentence  = 'Hello ' . $firstname . '!';
-        } else {
-            $sentence  = 'Hello ' . $firstname . ' '. $lastname . '!';
+        $sentence = 'Hello ' . $firstname;
+        if ($lastname) {
+            $sentence .= ' ' . $lastname;
         }
 
-        return $sentence;
+        return $sentence . '!';
     }
 
     public function sayGoodbye(string $firstname, ?string $lastname = null): ?string
     {
-        if (!$lastname) {
-            $sentence  = 'Au revoir ' . $firstname . '!';
-        } else {
-            $sentence  = 'Au revoir ' . $firstname . ' '. $lastname . '!';
+        $sentence = 'Au revoir ' . $firstname;
+        if ($lastname) {
+            $sentence .= ' ' . $lastname;
         }
 
-        return $sentence;
+        return $sentence . '!';
     }
 }
