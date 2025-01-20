@@ -19,6 +19,17 @@ class HelloServiceTest extends TestCase
         ];
     }
 
+    public static function sayGoodbyeProvider(): array
+    {
+        return [
+            ['Georges', null, 'Au revoir Georges!', true],
+            ['Sarah', null, 'Au revoir Sarah!'],
+            ['Sarah', 'Miller', 'Au revoir Sarah Miller!'],
+            ['Georges', 'Miller', 'Au revoir John Doe!', false],
+            ['Sarah', 'Dupont', 'Au revoir Bernard Dupont!', false],
+        ];
+    }
+
     #[DataProvider('sayHelloProvider')]
     public function testSayHello(string $firstname, ?string $lastname, string $excepted, bool $isSame = true)
     {
@@ -26,10 +37,14 @@ class HelloServiceTest extends TestCase
         $method = $isSame ? 'assertSame' : 'assertNotSame';
 
         $this->$method($excepted, $helloService->sayHello($firstname, $lastname));
-        //$this->assertSame('Hello Sarah!', $helloService->sayHello('Sarah'));
-        //$this->assertSame('Hello Georges!', $helloService->sayHello('Georges'));
+    }
 
-        //$this->assertNotSame('Hello Georges!', $helloService->sayHello('Sarah'));
-        //$this->assertNotSame('Hello John doe!', $helloService->sayHello('John', 'Doe'));
+    #[DataProvider('sayGoodbyeProvider')]
+    public function testSayGoodbye(string $firstname, ?string $lastname, string $excepted, bool $isSame = true)
+    {
+        $helloService = new HelloService();
+        $method = $isSame ? 'assertSame' : 'assertNotSame';
+
+        $this->$method($excepted, $helloService->sayGoodbye($firstname, $lastname));
     }
 }

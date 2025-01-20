@@ -14,4 +14,15 @@ class HelloService
 
         return $sentence;
     }
+
+    public function sayGoodbye(string $firstname, ?string $lastname = null): ?string
+    {
+        if (!$lastname) {
+            $sentence  = 'Au revoir ' . $firstname . '!';
+        } else {
+            $sentence  = 'Au revoir ' . $firstname . ' '. $lastname . '!';
+        }
+
+        return $sentence;
+    }
 }
