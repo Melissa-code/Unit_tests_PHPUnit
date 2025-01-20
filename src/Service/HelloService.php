@@ -6,6 +6,12 @@ class HelloService
 {
     public function sayHello(string $firstname, ?string $lastname = null): ?string
     {
-        return 'Hello ' . $firstname . $lastname . '!';
+        if (!$lastname) {
+            $sentence  = 'Hello ' . $firstname . '!';
+        } else {
+            $sentence  = 'Hello ' . $firstname . ' '. $lastname . '!';
+        }
+
+        return $sentence;
     }
 }

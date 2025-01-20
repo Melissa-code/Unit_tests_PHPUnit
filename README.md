@@ -58,3 +58,13 @@ Time: 00:00.007, Memory: 6.00 MB
 OK (1 test, 1 assertion)
 ```
 
+
+### Data providers 
+
+[PHPUnit Documentation](https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#data-providers)
+
+- Le data provider (fournisseur de données) est une fonctionnalité qui permet de fournir plusieurs ensembles de données d'entrée à un test.
+- Cela permet d'exécuter un même test avec différents paramètres pour vérifier que le comportement reste correct. 
+
+#### Objectif principal :
+- Un data provider aide à tester un code de manière exhaustive avec plusieurs scénarios sans dupliquer le test.
