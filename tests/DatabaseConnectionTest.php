@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class DatabaseConnectionTest extends TestCase
 {
-    public function testConnect()
+    public function testConnect(): void
     {
         $databaseConnection = new DatabaseConnection();
         $pdo = $databaseConnection->connect( );

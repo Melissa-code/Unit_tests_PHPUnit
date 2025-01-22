@@ -37,7 +37,7 @@ The architecture must be like that (complete it if necessary):
     }
 ```
 
-3. run: `Run composer dump-autoload`
+3. run: `composer dump-autoload`
 
 
 
@@ -97,7 +97,7 @@ exit;
 - Create a .env with the credentials to connect to the database
 - Install the library : `composer require vlucas/phpdotenv`
 - load the .env file with variables in the constructor DatabaseConnection to use them 
-- Create the connect() function
-- Test the connect() function 
-
+- Create the connect() function & Test the connect() function
 - Run test : `./vendor/phpunit/phpunit/phpunit tests/DatabaseConnectionTest.php`
+
+- Add data in `user` table; 
