@@ -101,3 +101,16 @@ exit;
 - Run test : `./vendor/phpunit/phpunit/phpunit tests/DatabaseConnectionTest.php`
 
 - Add data in `user` table; 
+- Test if he is existing; 
+
+
+### Incomplete test 
+
+- If you haven't finished your test, write:  
+
+```
+public function testUserIsAdmin(): void
+{
+    $this->markTestIncomplete('Test incomplet');
+}
+```
