@@ -6,15 +6,20 @@ use PDO;
 
 class User
 {
-    public function findUserByUsername(string $username): array
+    public function findUserByUsername(string $username): ?array
     {
         $databaseConnection = new DatabaseConnection();
         $pdo = $databaseConnection->connect();
 
-        $query = $pdo->prepare('SELECT * FROM user where username = :username');
+        $query = $pdo->prepare('SELECT firstname, lastname, username FROM user where username = :username');
         $query->bindParam('username', $username);
         $query->execute();
+        $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        return $query->fetch(PDO::FETCH_ASSOC);
+        if(!$user) {
+            return null;
+        }
+        //var_dump($user);die();
+        return $user;
     }
 }
