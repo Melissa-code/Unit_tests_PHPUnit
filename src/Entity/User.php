@@ -17,7 +17,7 @@ class User
     }
 
 
-    public function getFavoriteMovies(): array
+    public function getFavoriteMovies(): ?array
     {
         return $this->favoriteMovies;
     }

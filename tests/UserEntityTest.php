@@ -4,60 +4,79 @@ namespace Tests;
 
 use App\Entity\User;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class UserEntityTest extends TestCase
 {
-    public function testUserConstructor(): void
+    public static function userProvider(): ?array
     {
-        $user = new User(33, "John");
+        return [
+            ['John', 33, ["The Shinning", "Alien", "Flow"]],
+            ['Alice', 19, []],
+        ];
+    }
 
-        $this->assertSame(33, $user->getAge());
-        $this->assertSame("John", $user->getName());
+    #[DataProvider('userProvider')]
+    public function testUserConstructor(string $name, int $age): void
+    {
+        $user = new User($age, $name);
+
+        $this->assertSame($age, $user->getAge());
+        $this->assertSame($name, $user->getName());
         $this->assertEmpty($user->getFavoriteMovies());
     }
 
-    public function testTellName(): void
+    #[DataProvider('userProvider')]
+    public function testTellName(string $name, int $age): void
     {
-        $user = new User(33, "John");
+        $user = new User($age, $name);
 
         $this->assertIsString($user->tellName());
-        $this->assertStringContainsString("John", $user->tellName());
-        $this->assertStringContainsStringIgnoringCase("John", $user->tellName());
+        $this->assertStringContainsString( $name, $user->tellName());
+        $this->assertStringContainsStringIgnoringCase( $name, $user->tellName());
     }
 
-    public function testTellAge(): void
+    #[DataProvider('userProvider')]
+    public function testTellAge(string $name, int $age): void
     {
-        $user = new User(33, "John");
+        $user = new User($age, $name);
 
         $this->assertIsString($user->tellAge());
-        $this->assertStringContainsString(33, $user->tellAge());
+        $this->assertStringContainsString( $age, $user->tellAge());
     }
 
-    public function testAddAndRemoveFavoriteMovies(): void
+    #[DataProvider('userProvider')]
+    public function testAddAndRemoveFavoriteMovies(string $name, int $age, array $movies): void
     {
-        $user = new User(33, "John");
+        $user = new User($age, $name);
 
-        $this->assertTrue($user->addFavoriteMovie("The Shinning"));
-        $this->assertTrue($user->addFavoriteMovie("Alien"));
-        $this->assertTrue($user->addFavoriteMovie("Flow"));
-        $this->assertContains("Alien", $user->getFavoriteMovies());
-        $this->assertContains("Flow", $user->getFavoriteMovies());
-        $this->assertCount(3, $user->getFavoriteMovies());
+        foreach ($movies as $movie) {
+            $this->assertTrue($user->addFavoriteMovie($movie));
+            $this->assertContains($movie, $user->getFavoriteMovies());
+        }
 
-        $this->assertTrue($user->removeFavoriteMovie("Alien"));
-        $this->assertTrue($user->removeFavoriteMovie("Flow"));
-        $this->assertNotContains("Alien", $user->getFavoriteMovies());
-        $this->assertNotContains("Flow", $user->getFavoriteMovies());
-        $this->assertCount(1, $user->getFavoriteMovies());
-        $this->assertContains("The Shinning", $user->getFavoriteMovies());
+        $this->assertCount(count($movies), $user->getFavoriteMovies());
+
+        if (count($movies) === 0) {
+            return;
+        }
+
+        foreach ($movies as $movie) {
+            $this->assertTrue($user->removeFavoriteMovie($movie));
+            $this->assertNotContains($movie, $user->getFavoriteMovies());
+        }
+
+        $this->assertCount(0, $user->getFavoriteMovies());
     }
 
-    public function testFailedRemoveFavoriteMovies(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
+   #[DataProvider('userProvider')]
+   public function testFailedRemoveFavoriteMovies(string $name, int $age): void
+   {
+       $this->expectException(InvalidArgumentException::class);
 
-        $user = new User(33, "John");
-        $user->removeFavoriteMovie("The Shinning");
-    }
+       $user = new User($age, $name);
+       $user->removeFavoriteMovie("The Shinning");
+   }
+
 }
