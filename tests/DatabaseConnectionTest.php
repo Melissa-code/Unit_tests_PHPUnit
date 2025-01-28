@@ -11,7 +11,7 @@ class DatabaseConnectionTest extends TestCase
     public function testConnect(): void
     {
         $databaseConnection = new DatabaseConnection();
-        $pdo = $databaseConnection->connect( );
+        $pdo = $databaseConnection->connect();
         $this->assertInstanceOf(PDO::class, $pdo);
 
         // Test connection DB:if queries can be sent to the DB

@@ -4,7 +4,7 @@ namespace App\Service;
 
 use PDO;
 
-class User
+class UserManager
 {
     public function findUserByUsername(string $username): ?array
     {

@@ -101,7 +101,8 @@ exit;
 - Run test : `./vendor/phpunit/phpunit/phpunit tests/DatabaseConnectionTest.php`
 
 - Add data in `user` table; 
-- Test if he is existing; 
+- Test if he is existing in UserManagerTest; 
+- Run test : ` ./vendor/phpunit/phpunit/phpunit tests/UserManagerTest.php`
 
 
 ### Incomplete test 
@@ -114,3 +115,11 @@ public function testUserIsAdmin(): void
     $this->markTestIncomplete('Test incomplet');
 }
 ```
+
+
+### Test all the methods in the user entity class 
+
+- Create a directory Entity and a class User 
+- Test all the methods in UserentityTest class 
+- Run test : `./vendor/phpunit/phpunit/phpunit tests/UserEntityTest.php
+  `
