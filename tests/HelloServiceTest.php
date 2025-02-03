@@ -31,8 +31,12 @@ class HelloServiceTest extends TestCase
     }
 
     #[DataProvider('sayHelloProvider')]
-    public function testSayHello(string $firstname, ?string $lastname, string $excepted, bool $isSame = true)
-    {
+    public function testSayHello(
+        string $firstname,
+        ?string $lastname,
+        string $excepted,
+        bool $isSame = true
+    ): void {
         $helloService = new HelloService();
         $method = $isSame ? 'assertSame' : 'assertNotSame';
 
@@ -40,8 +44,12 @@ class HelloServiceTest extends TestCase
     }
 
     #[DataProvider('sayGoodbyeProvider')]
-    public function testSayGoodbye(string $firstname, ?string $lastname, string $excepted, bool $isSame = true)
-    {
+    public function testSayGoodbye(
+        string $firstname,
+        ?string $lastname,
+        string $excepted,
+        bool $isSame = true
+    ): void {
         $helloService = new HelloService();
         $method = $isSame ? 'assertSame' : 'assertNotSame';
 

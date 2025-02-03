@@ -14,13 +14,13 @@ class DatabaseConnection
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
         $dotenv->load();
 
-        /*
+    /*
         if (!file_exists(__DIR__ . '/../../.env')) {
             echo "Le fichier .env n'a pas été trouvé !\n";
         }
         echo "Chemin absolu : " . __DIR__ . '/../../.env' . "\n";
         var_dump(getenv('DBNAME'), getenv('HOST'), getenv('PORT'), getenv('USER'), getenv('PASSWORD'));
-        */
+    */
     }
 
     public function connect(): ?PDO
